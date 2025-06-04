@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車範例</title>
+    <style>
+        img {
+            width: 200px;
+            height: auto;
+        }
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 id="update">購物車金額：$0</h2>
+    <button onclick="showCart()">購物車總額</button>
+    <button onclick="clearCart()">清空購物車</button>
+
+    <div>
+        <img src="AnyConv.com__下載.jpg" alt="商品1">
+        <p>$100</p>
+        <button onclick="addToCart(100)">加入購物車</button>
+    </div>
+
+    <div>
+        <img src="AnyConv.com__下載 (1).jpg" alt="商品2">
+        <p>$120</p>
+        <button onclick="addToCart(666)">加入購物車</button>
+    </div>
+
+<script>
+
+    let totalPrice = parseFloat(localStorage.getItem("Price")) || 0;
+    updateCart();
+
+
+    function addToCart(price) {
+        totalPrice += price;
+        localStorage.setItem("Price", totalPrice);
+        updateCart();
+    }
+
+
+    function showCart() {
+        alert("購物車總額為：$" + totalPrice);
+    }
+
+
+    function clearCart() {
+        totalPrice = 0;
+        localStorage.setItem("Price", totalPrice);
+        updateCart();
+        alert("購物車已清空。");
+    }
+
+
+    function updateCart() {
+        document.getElementById("update").innerText = "購物車金額：$" + totalPrice;
+    }
+</script>
+
+</body>
+</html>
